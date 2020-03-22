@@ -27,15 +27,8 @@ public class Userinformation {
 
     private Boolean allowed;
 
-    private Userpassword userpassword;
 
-    public Userpassword getUserpassword() {
-        return userpassword;
-    }
 
-    public void setUserpassword(Userpassword userpassword) {
-        this.userpassword = userpassword;
-    }
 
     public Integer getId() {
         return id;
