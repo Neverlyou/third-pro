@@ -35,14 +35,14 @@ public class Book {
 
     private String price;
 
-    private Integer status;
+    private int status;
 
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getAverage() {
@@ -50,7 +50,7 @@ public class Book {
     }
 
     public void setAverage(String average) {
-        this.average = average == null ? null : average.trim();
+        this.average = average;
     }
 
     public String getAuthor() {
@@ -58,7 +58,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        this.author = author == null ? null : author.trim();
+        this.author = author;
     }
 
     public String getPubdate() {
@@ -66,7 +66,7 @@ public class Book {
     }
 
     public void setPubdate(String pubdate) {
-        this.pubdate = pubdate == null ? null : pubdate.trim();
+        this.pubdate = pubdate;
     }
 
     public String getOriginTitle() {
@@ -74,7 +74,7 @@ public class Book {
     }
 
     public void setOriginTitle(String originTitle) {
-        this.originTitle = originTitle == null ? null : originTitle.trim();
+        this.originTitle = originTitle;
     }
 
     public String getImage() {
@@ -82,7 +82,7 @@ public class Book {
     }
 
     public void setImage(String image) {
-        this.image = image == null ? null : image.trim();
+        this.image = image;
     }
 
     public String getBinding() {
@@ -90,7 +90,7 @@ public class Book {
     }
 
     public void setBinding(String binding) {
-        this.binding = binding == null ? null : binding.trim();
+        this.binding = binding;
     }
 
     public String getTranslator() {
@@ -98,7 +98,7 @@ public class Book {
     }
 
     public void setTranslator(String translator) {
-        this.translator = translator == null ? null : translator.trim();
+        this.translator = translator;
     }
 
     public String getCatalog() {
@@ -106,7 +106,7 @@ public class Book {
     }
 
     public void setCatalog(String catalog) {
-        this.catalog = catalog == null ? null : catalog.trim();
+        this.catalog = catalog;
     }
 
     public String getPages() {
@@ -114,7 +114,7 @@ public class Book {
     }
 
     public void setPages(String pages) {
-        this.pages = pages == null ? null : pages.trim();
+        this.pages = pages;
     }
 
     public String getPublisher() {
@@ -122,7 +122,7 @@ public class Book {
     }
 
     public void setPublisher(String publisher) {
-        this.publisher = publisher == null ? null : publisher.trim();
+        this.publisher = publisher;
     }
 
     public String getIsbn10() {
@@ -130,7 +130,7 @@ public class Book {
     }
 
     public void setIsbn10(String isbn10) {
-        this.isbn10 = isbn10 == null ? null : isbn10.trim();
+        this.isbn10 = isbn10;
     }
 
     public String getIsbn13() {
@@ -138,7 +138,7 @@ public class Book {
     }
 
     public void setIsbn13(String isbn13) {
-        this.isbn13 = isbn13 == null ? null : isbn13.trim();
+        this.isbn13 = isbn13;
     }
 
     public String getTitle() {
@@ -146,7 +146,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getAuthorIntro() {
@@ -154,7 +154,7 @@ public class Book {
     }
 
     public void setAuthorIntro(String authorIntro) {
-        this.authorIntro = authorIntro == null ? null : authorIntro.trim();
+        this.authorIntro = authorIntro;
     }
 
     public String getSummary() {
@@ -162,7 +162,7 @@ public class Book {
     }
 
     public void setSummary(String summary) {
-        this.summary = summary == null ? null : summary.trim();
+        this.summary = summary;
     }
 
     public String getPrice() {
@@ -170,14 +170,38 @@ public class Book {
     }
 
     public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
+        this.price = price;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", average='" + average + '\'' +
+                ", author='" + author + '\'' +
+                ", pubdate='" + pubdate + '\'' +
+                ", originTitle='" + originTitle + '\'' +
+                ", image='" + image + '\'' +
+                ", binding='" + binding + '\'' +
+                ", translator='" + translator + '\'' +
+                ", catalog='" + catalog + '\'' +
+                ", pages='" + pages + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", isbn10='" + isbn10 + '\'' +
+                ", isbn13='" + isbn13 + '\'' +
+                ", title='" + title + '\'' +
+                ", authorIntro='" + authorIntro + '\'' +
+                ", summary='" + summary + '\'' +
+                ", price='" + price + '\'' +
+                ", status=" + status +
+                '}';
     }
 }
