@@ -21,5 +21,6 @@ public interface BookService {
     //根据输入的作者名字模糊查询
     public List<Book> findByAut(String author);
 
-    public Moviename findAll();
+    //查看书籍详情
+    public Book lookForIn(String bookId);
 }

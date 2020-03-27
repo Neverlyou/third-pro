@@ -6,6 +6,7 @@ import com.moj.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,5 +54,33 @@ public class BookController {
         modelAndView.setViewName("book/book_information");
         return modelAndView;
         //return movieNameMapper.findAll().toString();
+    }
+
+    //图书详情
+    @RequestMapping(value = "/book_information/{bookId}")
+    public String bookInformation(@PathVariable("bookId") long bookId, HttpServletRequest request, Model model) {
+        //UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        String id = Long.toString(bookId);
+        Book entity = bookService.lookForIn(id);
+        if (null == entity) {
+            model.addAttribute("result", "fail");
+            entity = new Book();
+        } else {
+            model.addAttribute("result", "success");
+            entity.setTranslator(entity.getTranslator().replace("[\"", "").replace("\"]", "").replace("\"", ""));
+            entity.setAuthor(entity.getAuthor().replace("[\"", "").replace("\"]", "").replace("\"", ""));
+            entity.setSummary(entity.getSummary().replace("\n","<br/>"));
+            entity.setCatalog(entity.getCatalog().replace("\n", "<br/>"));
+            entity.setAuthorIntro(entity.getAuthorIntro().replace("\n","<br/>"));
+        }
+        model.addAttribute("entity", entity);
+       /* model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
+        model.addAttribute("userInformation", userInformation);
+        model.addAttribute("username", userInformation.getName());
+        model.addAttribute("autograph", userInformation.getAutograph());*/
+        model.addAttribute("action", 7);
+        //userController.getUserCounts(model, userInformation.getId());
+
+        return "book/book_information";
     }
 }

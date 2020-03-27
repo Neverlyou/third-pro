@@ -18,4 +18,6 @@ public interface BookMapper {
     public List<Book> findByTit(@Param("title")String title);
     //根据输入的作者名字模糊查询
     public List<Book> findByAut(@Param("author")String author);
+    //点击书籍查询详情  id
+    public Book lookForIn(@Param("bookId")String bookId);
 }

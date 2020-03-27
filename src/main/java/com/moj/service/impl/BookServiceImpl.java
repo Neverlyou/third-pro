@@ -6,6 +6,9 @@ import com.moj.mapper.BookMapper;
 import com.moj.mapper.MovieNameMapper;
 import com.moj.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +21,26 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private  BookMapper bookMapper;
     @Autowired
-    private MovieNameMapper movieNameMapper;
+    private RedisTemplate<Object,Object> redisTemplate;
+    /*@Autowired
+    private MovieNameMapper movieNameMapper;*/
     @Override
     public List<Book> findAllBook() {
-        return bookMapper.findAllBook();
+        RedisSerializer redisSerializer1 = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(redisSerializer1);
+        List<Book> list = (List<Book>)redisTemplate.opsForValue().get("allBook");
+        if(null == list){
+            synchronized (this){
+                list = (List<Book>)redisTemplate.opsForValue().get("allBook");
+                if(null == list){
+                    list = bookMapper.findAllBook();
+                    redisTemplate.opsForValue().set("allBook",list);
+                }
+            }
+        }else{
+            System.out.println("redis缓存");
+        }
+        return list;
     }
 
     @Override
@@ -35,7 +54,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Moviename findAll() {
-        return movieNameMapper.findAll();
+    public Book lookForIn(String bookId) {
+        return bookMapper.lookForIn(bookId);
     }
+
 }

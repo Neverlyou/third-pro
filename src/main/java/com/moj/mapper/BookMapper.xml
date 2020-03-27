@@ -17,4 +17,8 @@
         <bind name="book_author" value="'%' + author + '%'"/>
         SELECT * FROM book WHERE title LIKE #{book_author}
     </select>
+
+    <select id="lookForIn" resultType="com.moj.entity.Book" parameterType="String">
+        SELECT * FROM book WHERE id = #{bookId}
+    </select>
 </mapper>
